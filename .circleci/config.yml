@@ -414,6 +414,13 @@ jobs:
         environment:
           - PLUGINS=connect
 
+  node-cucumber:
+    <<: *node-plugin-base
+    docker:
+      - image: node:10
+        environment:
+          - PLUGINS=cucumber
+
   node-couchbase:
     <<: *node-plugin-base
     docker:
@@ -1064,6 +1071,7 @@ workflows:
       - node-cassandra
       - node-connect
       - node-couchbase
+      - node-cucumber
       - node-dns
       - node-elasticsearch
       - node-express
@@ -1257,6 +1265,7 @@ workflows:
       - node-cassandra
       - node-connect
       - node-couchbase
+      - node-cucumber
       - node-dns
       - node-elasticsearch
       - node-express
