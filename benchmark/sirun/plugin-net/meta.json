@@ -1,27 +1,30 @@
 {
   "name": "net",
-  "iterations": 10,
   "cachegrind": true,
   "variants": {
     "client-control": {
       "setup": "bash -c \"nohup node server.js &\"",
       "run": "node client.js",
-      "env": { "PORT": "3001" }
+      "teardown": "bash -c \"kill -9 `cat server.pid`\"",
+      "env": { "SET_PID": "server", "PORT": "3001" }
     },
     "client-with-tracer": {
       "setup": "bash -c \"nohup node server.js &\"",
       "run": "node -r ../../../init.js client.js",
-      "env": { "PORT": "3002" }
+      "teardown": "bash -c \"kill -9 `cat server.pid`\"",
+      "env": { "SET_PID": "server", "PORT": "3002" }
     },
     "server-control": {
       "setup": "bash -c \"sleep 2 && nohup node client.js &\"",
       "run": "node server.js",
-      "env": { "PORT": "3003" }
+      "teardown": "bash -c \"kill -9 `cat client.pid`\"",
+      "env": { "SET_PID": "client", "PORT": "3003" }
     },
     "server-with-tracer": {
       "setup": "bash -c \"sleep 2 && nohup node client.js &\"",
       "run": "node -r ../../../init.js server.js",
-      "env": { "PORT": "3004" }
+      "teardown": "bash -c \"kill -9 `cat client.pid`\"",
+      "env": { "SET_PID": "client", "PORT": "3004" }
     }
   }
 }
