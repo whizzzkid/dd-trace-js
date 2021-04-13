@@ -318,6 +318,14 @@ jobs:
           - PLUGINS=bluebird
           - SIRUN_TEST_DIR=plugin-bluebird
 
+  node-bench-sirun-plugin-http-latest:
+    <<: *node-bench-sirun-base
+    docker:
+      - image: node
+        environment:
+          - PLUGINS=http
+          - SIRUN_TEST_DIR=plugin-http
+
   node-bench-sirun-scope-latest:
     <<: *node-bench-sirun-base
     docker:
@@ -481,6 +489,13 @@ jobs:
       - image: node:8
         environment:
           - PLUGINS=bluebird
+
+  node-http:
+    <<: *node-plugin-base
+    docker:
+      - image: node:8
+        environment:
+          - PLUGINS=http
 
   node-bunyan:
     <<: *node-plugin-base
@@ -1172,6 +1187,7 @@ workflows:
       - node-amqp10
       - node-aws-sdk
       - node-bluebird
+      - node-http
       - node-bunyan
       - node-cassandra
       - node-connect
@@ -1229,6 +1245,7 @@ workflows:
             - node-amqp10
             - node-aws-sdk
             - node-bluebird
+            - node-http
             - node-bunyan
             - node-cassandra
             - node-connect
@@ -1284,6 +1301,7 @@ workflows:
       - node-bench-sirun-encoders-latest
       - node-bench-sirun-plugin-q-latest
       - node-bench-sirun-plugin-bluebird-latest
+      - node-bench-sirun-plugin-http-latest
       - node-bench-sirun-scope-latest
       - node-bench-sirun-exporting-pipeline-latest
   prebuild:
@@ -1431,6 +1449,7 @@ workflows:
       - node-amqp10
       - node-aws-sdk
       - node-bluebird
+      - node-http
       - node-bunyan
       - node-cassandra
       - node-connect
@@ -1493,5 +1512,6 @@ workflows:
       - node-bench-sirun-encoders-latest
       - node-bench-sirun-plugin-q-latest
       - node-bench-sirun-plugin-bluebird-latest
+      - node-bench-sirun-plugin-http-latest
       - node-bench-sirun-scope-latest
       - node-bench-sirun-exporting-pipeline-latest
